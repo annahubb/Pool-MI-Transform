@@ -5,7 +5,7 @@ Example data and analysis scripts for transforming and pooling multiple imputati
 
 **Analysis Description**
 
-$Y_i = X_i + W_i + X_i\*W_i + \varepsilon$
+$$Y_i = X_i + W_i + X_i\*W_i + \varepsilon$$
 
 \begin{equation*}
 P(E)   = {n \choose k} p^k (1-p)^{ n-k} 
