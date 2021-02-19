@@ -13,7 +13,7 @@ The analysis script `example script - reading data.R` contains code to obtain de
 
 <img src="https://render.githubusercontent.com/render/math?math=READ2_i \= READ1_i %2B LRNPROB1_i %2B READ1_i\*LRNPROB1_i %2B \varepsilon">
 
-*Generic Notation*
+*Generic Notation:*
 
 <img src="https://render.githubusercontent.com/render/math?math=Y_i \= X_i %2B W_i %2B X_i\*W_i %2B \varepsilon">
 
