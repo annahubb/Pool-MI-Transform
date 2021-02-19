@@ -53,7 +53,7 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 getwd()
 
 # install required packages here; un-comment next line if needed
-# install.packages(c("dplyr", "mice", "psych", "rlist", "miceadds"))
+# install.packages(c("dplyr", "mice", "psych", "rlist", "miceadds, metaSEM"))
 
 # load functions and required packages; no modification required here
 # pooling.function.R file must be in same location as working directory
