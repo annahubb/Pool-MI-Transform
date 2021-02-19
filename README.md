@@ -1,5 +1,5 @@
 # Pool-MI-Ests
-Example data and analysis scripts for transforming and pooling multiple imputation estimates
+Example data and analysis scripts for transforming and pooling multiple imputation estimates for descriptives, correlation, and regression analyses
 
 **File Descriptions**
 - `create stacked impuations.imp` 
@@ -9,7 +9,7 @@ Example data and analysis scripts for transforming and pooling multiple imputati
   + Blimp is available for download at http://www.appliedmissingdata.com/multilevel-imputation.html
 
 - `example script - reading data.R`
-  + R script that transforms and pools estimates from descriptives, correlation, and regression analyses
+  + R script that transforms and pools estimates for descriptives, correlation, and regression analyses
   + Uses `reading.imps.dat` to conduct analyses
   + Requires `pooling.functions.R`
 
