@@ -1,0 +1,15 @@
+DATA: reading.dat;
+VARIABLES: read1 lrnprob1 read2;
+MISSING: 999;
+MODEL: 
+read2 ~ read1 lrnprob1 read1*lrnprob1;
+CENTER:
+read1 lrnprob1;
+SIMPLE: read1 | lrnprob1;
+SEED: 90291;
+BURN: 5000;
+ITERATIONS: 1000;
+NIMPS: 10;
+OPTIONS: ;
+SAVE: 
+stacked0 = reading.imps.dat;
