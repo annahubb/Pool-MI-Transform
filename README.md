@@ -7,6 +7,8 @@ Example data and analysis scripts for transforming and pooling multiple imputati
 
 $Y_i = X_i + W_i + X_i\*W_i + \varepsilon$
 
+$`\sqrt{2}`$
+
 **File Descriptions**
 - `create stacked impuations.imp` 
   + Blimp script used to create a stacked multiple imputations
