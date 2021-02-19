@@ -1,2 +1,2 @@
 # Pool-MI-Ests
-Data and analysis scripts for transforming and pooling multiple imputation estimates
+Example data and analysis scripts for transforming and pooling multiple imputation estimates
