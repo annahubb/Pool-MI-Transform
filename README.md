@@ -7,10 +7,7 @@ Example data and analysis scripts for transforming and pooling multiple imputati
 
 $$Y_i = X_i + W_i + X_i\*W_i + \varepsilon$$
 
-\begin{equation*}
-P(E)   = {n \choose k} p^k (1-p)^{ n-k} 
-\end{equation*}
-
+<img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">
 
 **File Descriptions**
 - `create stacked impuations.imp` 
