@@ -17,19 +17,17 @@ The analysis script `example script - reading data.R` contains code to obtain de
 
 <img src="https://render.githubusercontent.com/render/math?math=Y_i \= X_i %2B W_i %2B X_i\*W_i %2B \varepsilon">
 
-
-
 **File Descriptions**
 - `create stacked impuations.imp` 
-  + Blimp script used to create a stacked multiple imputations
-  + Uses `reading.dat` to conduct the multiple imputations
+  + Blimp script used to create a dataset with stacked multiple imputations
+  + Uses the `reading.dat` raw data file to create multiple imputations
   + Creates the file `reading.imps.dat` used in `example script - reading data.R`
   + Blimp is available for download at http://www.appliedmissingdata.com/multilevel-imputation.html
 
 - `example script - reading data.R`
   + R script that transforms and pools estimates for descriptives, correlation, and regression analyses
-  + Uses `reading.imps.dat` to conduct analyses
-  + Requires `pooling.functions.R`
+  + Uses `reading.imps.dat` with stacked imputations to conduct analyses
+  + Requires `pooling.functions.R` to be in the same folder 
 
 - `pooling.functions.R`
   + R script that contains pooling functions required by `example script - reading data.R`
@@ -38,7 +36,8 @@ The analysis script `example script - reading data.R` contains code to obtain de
   + Raw data file used by `create stacked impuations.imp` 
 
 - `reading.imps.dat`
-  + Stacked imputations data file created by `create stacked impuations.imp` and used by `example script - reading data.R`
+  + Stacked imputations data file created by `create stacked impuations.imp` 
+  + Used by `example script - reading data.R`
 
 
 **References**
