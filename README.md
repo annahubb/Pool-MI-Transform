@@ -3,13 +3,19 @@ Example data and analysis scripts for transforming and pooling multiple imputati
 
 **Data Description**
 
-The data used for this analysis is based on a sample of *N = 74* adolescents who were previously identified as being at risk for developing emotional and behavioral disorders when in kindergarten and first grade. The data contains information about reading achievement in reading achievement and learning problems in primary school and reading achievement in secondary school. The missing data rate for reading achievement in primary school was XX\% while reading achievement in secondaray school and learning problems in primary school had missing data rates of XX\% and XX\%, respectively. 
-
+The data used for this analysis is based on a sample of *N* = 74 adolescents who were previously identified as being at risk for developing emotional and behavioral disorders when in kindergarten and first grade. The data contains information about reading achievement in reading achievement and learning problems in primary school and reading achievement in secondary school. The missing data rate for reading achievement in primary school was 67.5\% while reading achievement in secondary school and learning problems in primary school had missing data rates of 16.\2% and 1.3\%, respectively. We will demonstrate the pooling process using the following moderation analysis 
 **Analysis Description**
 
-The analysis script `example script - reading data.R` contains code to obtain descriptive statistics and transform standard deviations and variances from the descriptives. Other analyses included are bivariate correlation analyses with the Fishers *R*-to-*z* transfomation. Finally the analysis script includes code to compute transformed/pooled imputation estimates for three a simple moderated regression analyses: (1) when the focal predictor and moderator are both centered at their means; (2) when the focal prector is centered at its mean and the moderator is centered at 1 standard devation above the mean; (3) when the focal prector is centered at its mean and the moderator is centered at 1 standard devation below the mean. The regression equation is as follows:
+The analysis script `example script - reading data.R` contains code to obtain descriptive statistics and transform standard deviations and variances from the descriptives. Other analyses included are bivariate correlation analyses with the Fishers *R*-to-*z* transfomation. Finally the analysis script includes code to compute transformed/pooled imputation estimates for a simple moderated regression analysis where learning problems in primary school moderates the effect of primary school reading achievement on secondary school reading achievement. The moderation analysis is demonstrated with three different centering schemes: (1) when the focal predictor and moderator are both centered at their means; (2) when the focal prector is centered at its mean and the moderator is centered at 1 standard devation above the mean; (3) when the focal prector is centered at its mean and the moderator is centered at 1 standard devation below the mean. The regression equation is as follows:
+
+*Variable-specific Notation:*
+
+<img src="https://render.githubusercontent.com/render/math?math=READ2_i \= READ1_i %2B LRNPROB1_i %2B READ1_i\*LRNPROB1_i %2B \varepsilon">
+
+*Generic Notation*
 
 <img src="https://render.githubusercontent.com/render/math?math=Y_i \= X_i %2B W_i %2B X_i\*W_i %2B \varepsilon">
+
 
 
 **File Descriptions**
