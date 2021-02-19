@@ -1,6 +1,12 @@
 # Pool-MI-Ests
 Example data and analysis scripts for transforming and pooling multiple imputation estimates for descriptives, correlation, and regression analyses
 
+**Data Description**
+
+**Analysis Description**
+
+$Y_i = X_i + W_i + X_i\*W_i + \varepsilon$
+
 **File Descriptions**
 - `create stacked impuations.imp` 
   + Blimp script used to create a stacked multiple imputations
