@@ -1,5 +1,5 @@
 # Pool-MI-Ests
-Example data and analysis scripts for transforming and pooling multiple imputation estimates for descriptives, correlation, and regression analyses using data from Montague, Enders, and Castro (2005).  
+Example data and analysis scripts for transforming and pooling multiple imputation estimates for descriptives, correlation, and regression analyses using data from Montague, Enders, and Castro (2005). To use, click the "Code" button, then "Download ZIP". 
 
 **Data Description**
 
