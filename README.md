@@ -7,7 +7,7 @@ Example data and analysis scripts for transforming and pooling multiple imputati
 
 $$Y_i = X_i + W_i + X_i\*W_i + \varepsilon$$
 
-<img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">
+<img src="https://render.githubusercontent.com/render/math?math=Y_i = X_i + W_i + X_i\*W_i + \varepsilon">
 
 **File Descriptions**
 - `create stacked impuations.imp` 
