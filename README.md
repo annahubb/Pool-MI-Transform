@@ -1,6 +1,7 @@
 # Pool-MI-Ests
 Example data and analysis scripts for transforming and pooling multiple imputation estimates
 
+**File Descriptions**
 - `create stacked impuations.imp` 
   + Blimp script used to create a stacked multiple imputations
   + Uses `reading.dat` to conduct the multiple imputations
