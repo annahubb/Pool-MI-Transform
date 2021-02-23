@@ -5,9 +5,18 @@ Example data and analysis scripts for transforming and pooling multiple imputati
 
 The data used for this analysis is based on a sample of *N* = 74 adolescents who were previously identified as being at risk for developing emotional and behavioral disorders when in kindergarten and first grade. The data contains information about reading achievement in reading achievement and learning problems in primary school and reading achievement in secondary school. The missing data rate for reading achievement in primary school was 67.5% while reading achievement in secondary school and learning problems in primary school had missing data rates of 16.2% and 1.3%, respectively. We will demonstrate the pooling process using the following moderation analysis 
 
-**Analysis Description**
+**Descriptive Analysis Description**
 
 The analysis script `example script - reading data.R` contains code to obtain descriptive statistics and transform standard deviations and variances from the descriptives. Other analyses included are bivariate correlation analyses with the Fishers *R*-to-*z* transfomation. Finally the analysis script includes code to compute transformed/pooled imputation estimates for a simple moderated regression analysis where learning problems in primary school moderates the effect of primary school reading achievement on secondary school reading achievement. The moderation analysis is demonstrated with three different centering schemes: (1) when the focal predictor and moderator are both centered at their means; (2) when the focal predictor  is centered at its mean and the moderator is centered at 1 standard deviation  above the mean; (3) when the focal predictor  is centered at its mean and the moderator is centered at 1 standard deviation below the mean. The regression equation is as follows:
+
+
+**Correlation Description**
+
+- copy language from paper
+
+**Regression Analysis Description**
+
+- copy language from paper
 
 *Variable-specific Notation:*
 
