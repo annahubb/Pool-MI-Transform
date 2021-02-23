@@ -10,7 +10,7 @@ library(miceadds)
 
 
 # make implist from stacked data
-        make.mids <- function(data, var.names, imp.id, participant.id, missing){
+    make.mids <- function(data, var.names, imp.id, participant.id, missing){
  
           # reading in different types of files
           if ( grepl("csv", data, fixed = TRUE)) {
@@ -37,8 +37,6 @@ library(miceadds)
         implist <- as.mids(imps, .imp = imp.id, .id = participant.id)
         return(implist)
     }
-
-implist <- implist.mids
 
 #pool descriptives from implist
     pool.descriptives <- function(implist,variables){
