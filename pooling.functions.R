@@ -38,7 +38,7 @@ library(miceadds)
         return(implist)
     }
 
-
+implist <- implist.mids
 
 #pool descriptives from implist
     pool.descriptives <- function(implist,variables){
@@ -61,10 +61,23 @@ library(miceadds)
       transformations2 <- var_transform(descriptives.analyses)
       colnames(transformations2) <- colnames(transformations)
       rownames(transformations2) <- variables
+
+      #skewness descriptive transformations
+      transformations3 <- skew_transform(descriptives.analyses)
+      colnames(transformations3) <- colnames(transformations[,c(1,4,5)])
+      rownames(transformations3) <- variables   
       
+      #kurtosis descriptive transformations
+      transformations4 <- kurt_transform(descriptives.analyses)
+      colnames(transformations4) <- colnames(transformations[,c(1,4,5)])
+      rownames(transformations4) <- variables      
+      
+            
       all.describe <- list(un.transform  = pooled.desc,
                            sd.transform  = transformations,
-                           var.transform = transformations2)
+                           var.transform = transformations2,
+                           skew.transform = transformations3,
+                           kurt.transform = transformations4)
 
       
       return(all.describe)
@@ -262,3 +275,76 @@ library(miceadds)
   return(vars)
   
 }
+
+# skew transform (for descriptive var OR residual var)
+    skew_transform <- function(data){
+      
+        # define cube root function for negative values
+        cubert <- function(x) {sign(x) * abs(x)^(1/3)}   
+      
+      skewfunc <- function(data){
+        # data <- impresults[[1]]
+        skew <- data$skew
+        cubesk <- cubert(skew)
+        invsk <- 1/skew
+        skinfo <- cbind(skew,cubesk,invsk)
+        return(skinfo)
+      }
+
+
+      # vlist1 <- t(lapply(descriptives.analyses, varfunc))
+      skewlist <- t(lapply(data, skewfunc)) # lapply() instead of sapply()
+      
+      skewavg <- function(skewlist){
+        # var averages and backtransform
+        skewavgs <- withPool_MI(skewlist)
+        skewavgs[,2] <- skewavgs[,2]^3
+        skewavgs[,3] <- 1/skewavgs[,3] 
+        # names(sdavgs) <- c("sd", "logsd", "sqrtsd", "cubesd", "invsd")
+        # sdavgs <- sdavgs[1:length(sdavgs),]
+        return(skewavgs)
+        
+        
+      }
+      
+      skew <- skewavg(skewlist)
+      return(skew)
+      
+    }    
+
+# kurtosis transform (for descriptive kurtosis)
+    kurt_transform <- function(data){
+      
+      # define cube root function for negative values
+      cubert <- function(x) {sign(x) * abs(x)^(1/3)}   
+      
+      kurtfunc <- function(data){
+        # data <- impresults[[1]]
+        kurt <- data$kurtosis
+        cubek <- cubert(kurt)
+        invk <- 1/kurt
+        kinfo <- cbind(kurt,cubek,invk)
+        return(kinfo)
+      }
+      
+      
+      # vlist1 <- t(lapply(descriptives.analyses, varfunc))
+      kurtlist <- t(lapply(data, kurtfunc)) # lapply() instead of sapply()
+      
+      kurtavg <- function(kurtlist){
+        # var averages and backtransform
+        kurtavgs <- withPool_MI(kurtlist)
+        kurtavgs[,2] <- kurtavgs[,2]^3
+        kurtavgs[,3] <- 1/kurtavgs[,3] 
+        # names(sdavgs) <- c("sd", "logsd", "sqrtsd", "cubesd", "invsd")
+        # sdavgs <- sdavgs[1:length(sdavgs),]
+        return(kurtavgs)
+        
+        
+      }
+      
+      kurt <- kurtavg(kurtlist)
+      return(kurt)
+      
+    }    
+    
