@@ -152,13 +152,12 @@ library(metaSEM)
   
     
 # use function to pool regression results, no modification required here
-  reg <- pool.regression(implist.mids,lm1)
+  reg <- pool.regression(implist.mids,lm)
   reg_hi <- pool.regression(implist.mids,lm_hi)
   reg_low <- pool.regression(implist.mids,lm3_low)
   
- read1hi<- reg_hi$coefficients[2,]
-  
   # print regression results
-  reg1
-  reg2
-  reg3
+  reg
+  reg_hi
+  reg_low 
+ 
