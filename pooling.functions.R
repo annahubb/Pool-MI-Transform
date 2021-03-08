@@ -7,6 +7,8 @@ library(psych)
 library(rlist)  
 library(miceadds)
 
+# removes scientific notation
+options(scipen = 999)
 
 
 # make implist from stacked data
@@ -44,8 +46,15 @@ library(miceadds)
       descriptives <- with(implist, 
                            expr= describe(list.cbind((mget(variables))))
                           )
-  
-      pooled.desc <- withPool_MI(descriptives) # pooling untranformed
+      # pooling untranformed -- mean, median, sd, var, skew, kurt
+      pooled.desc <- withPool_MI(descriptives)
+      pooled.desc <- data.frame(mean = pooled.desc$mean,
+                                median = pooled.desc$median,
+                                sd = pooled.desc$sd,
+                                var = pooled.desc$sd^2,
+                                skew = pooled.desc$skew,
+                                kurtosis = pooled.desc$kurtosis)
+      
       varnames <- rownames(withPool_MI(descriptives))
       
       descriptives.analyses <- descriptives$analyses # (for sd and var pooling later)
@@ -61,7 +70,7 @@ library(miceadds)
       rownames(transformations2) <- variables
 
       #skewness descriptive transformations
-      transformations3 <- skew_transform(descriptives.analyses)
+      transformations3 <- round(skew_transform(descriptives.analyses),7)
       colnames(transformations3) <- colnames(transformations[,c(1,4,5)])
       rownames(transformations3) <- variables   
       
@@ -283,7 +292,7 @@ library(miceadds)
       skewfunc <- function(data){
         # data <- impresults[[1]]
         skew <- data$skew
-        cubesk <- cubert(skew)
+        cubesk <- round(cubert(skew),7)
         invsk <- 1/skew
         skinfo <- cbind(skew,cubesk,invsk)
         return(skinfo)
