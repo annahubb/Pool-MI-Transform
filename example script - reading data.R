@@ -1,13 +1,10 @@
 ################################################################
 ##### INSTRUCTIONS TO RUN PROGRAM HERE
 ################################################################
-    # - This program pools multiple imputation results from descriptive analyses, bivariate correlation analyses, and single-level linear regression analyses.
-    # 
-    # - This program is only able to read in multiply imputed data from .csv , .dat , .Rdata , .txt tab delimited files where the multiply imputed dataset is in a stacked format where the unimputed data is at the top of the dataset.
-    # 
-    # - This program also requires the pooling.function.R and the data file to be in the same folder/file location as this program
-    # 
-    # - A 'mids' object (multiply-imputed-data-set) object is created when reading in the stacked data, that is used throughout the file. A user of the MICE package may already have the required object, named 'implist.mids' created
+    # This program pools multiple imputation results from descriptive analyses, bivariate correlation analyses, and single-level linear regression analyses.
+    # This program is only able to read in multiply imputed data from .csv , .dat , .Rdata , .txt tab delimited files where the multiply imputed dataset is in a stacked format where the unimputed data is at the top of the dataset.
+    # This program also requires the pooling.function.R and the data file to be in the same folder/file location as this program
+    # A 'mids' object (multiply-imputed-data-set) object is created when reading in the stacked data, that is used throughout the file. A user of the MICE package may already have the required object, named 'implist.mids' created
 
 ################################################################
 ##### USER INPUTS HERE 
@@ -143,26 +140,25 @@ library(metaSEM)
   
   # moderation analysis where focal predictor and moderator are centered at the mean
   # modify equation as needed
-  lm1 <- 'read2 ~ read1_mu + lrnprob1_mu + read1_mu*lrnprob1_mu'
+  lm <- 'read2 ~ read1_mu + lrnprob1_mu + read1_mu*lrnprob1_mu'
   
   # moderation analysis where focal predictor and moderator are centered at 1 SD above the mean
   # modify equation as needed
-  lm2 <- 'read2 ~ read1_mu + lrnprob1_hi + read1_mu*lrnprob1_hi'
+  lm_hi <- 'read2 ~ read1_mu + lrnprob1_hi + read1_mu*lrnprob1_hi'
   
   # moderation analysis where focal predictor and moderator are centered at 1 SD below the mean
   # modify equation as needed
-  lm3 <- 'read2 ~ read1_mu + lrnprob1_low + read1_mu*lrnprob1_low'
+  lm3_low <- 'read2 ~ read1_mu + lrnprob1_low + read1_mu*lrnprob1_low'
   
     
 # use function to pool regression results, no modification required here
-  reg1 <- pool.regression(implist.mids,lm1)
-  reg2 <- pool.regression(implist.mids,lm2)
-  reg3 <- pool.regression(implist.mids,lm3)
+  reg <- pool.regression(implist.mids,lm1)
+  reg_hi <- pool.regression(implist.mids,lm_hi)
+  reg_low <- pool.regression(implist.mids,lm3_low)
+  
+ read1hi<- reg_hi$coefficients[2,]
   
   # print regression results
   reg1
   reg2
-  reg3 
-  
-  
-  
+  reg3
