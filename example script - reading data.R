@@ -82,19 +82,17 @@ descriptives
 ################################################################
 ##### THIS SECTION POOLS CORRELATIONS
 ################################################################
-# pool correlations requires these packages
-library(miceadds)
-library(metaSEM)
-  # use functions to pool correlation, no modification required here
-  cor <- micombine.cor(mi.res=implist.mids, variables=variables)
-  r_matrix   <- attr(cor, "r_matrix")
-  fisher_r <- vec2symMat(cor$fisher_r[1:(length(cor$r)/2)], diag = FALSE, byrow = FALSE) ; rownames(fisher_r) <- colnames(fisher_r) <- variables
+# use functions to pool correlation, no modification required here
+  poolcor <- pool.cor(implist.mids,variables)
+
+# print un-transformed correlation matrix  
+  poolcor$Untransformed
   
-  # print un-transformed correlation matrix  
-  r_matrix
+# print fisher's transformed correlation matrix
+  poolcor$FishersR
   
-  # print fisher's transformed correlation matrix
-  fisher_r
+# print significance tests for transformed correlations
+  poolcor$FishersR_Significance_Tests
   
 ################################################################
 ##### THIS SECTION CENTERS VARIABLES FOR REGRESSION ANALYSES
@@ -119,7 +117,7 @@ library(metaSEM)
     stacked.dat[paste0(x,"_mu")]     <- stacked.dat[x] - descriptives$un.transform[x,"mean"]
     stacked.dat[paste0(w,"_mu")]     <- stacked.dat[w] - descriptives$un.transform[w,"mean"]
   
-    # centering moderator at 1 SD above/below the mean
+    # centering moderator at 1 SD above/below the mean using inverse-transformed SD
     # this creates new variables that is centered at the mean with "_hi" and "_low" appended at the end of the variable name
     # no modification required here
     stacked.dat[paste0(w,"_hi")]  <- stacked.dat[w] - ( descriptives$un.transform[w,"mean"] + descriptives$sd.transform[w,"Inv.-Transformed"] )
@@ -148,13 +146,13 @@ library(metaSEM)
   
   # moderation analysis where focal predictor and moderator are centered at 1 SD below the mean
   # modify equation as needed
-  lm3_low <- 'read2 ~ read1_mu + lrnprob1_low + read1_mu*lrnprob1_low'
+  lm_low <- 'read2 ~ read1_mu + lrnprob1_low + read1_mu*lrnprob1_low'
   
     
 # use function to pool regression results, no modification required here
   reg <- pool.regression(implist.mids,lm)
   reg_hi <- pool.regression(implist.mids,lm_hi)
-  reg_low <- pool.regression(implist.mids,lm3_low)
+  reg_low <- pool.regression(implist.mids,lm_low)
   
   # print regression results
   reg

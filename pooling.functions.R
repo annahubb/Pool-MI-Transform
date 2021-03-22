@@ -55,7 +55,7 @@ options(scipen = 999)
                                 skew = pooled.desc$skew,
                                 kurtosis = pooled.desc$kurtosis)
       
-      varnames <- rownames(withPool_MI(descriptives))
+      rownames(pooled.desc) <- rownames(withPool_MI(descriptives))
       
       descriptives.analyses <- descriptives$analyses # (for sd and var pooling later)
       
@@ -91,6 +91,28 @@ options(scipen = 999)
       
 }
 
+    
+  pool.cor <- function(implist.mids, variables){
+      # untransformed correlations
+      cormatrix <- with(implist.mids, 
+                        expr = cor(list.cbind((mget(variables))))
+      )
+      
+      #untransformed correlation matrix
+      r <- withPool_MI(cormatrix)
+      
+      # transformed correlations with significance tests
+      cor <- micombine.cor(mi.res=implist.mids, variables=variables)
+      
+      # transformed correaltion matrix
+      r_tform   <- attr(cor, "r_matrix")
+      
+      correlations <- list(Untransformed = r, 
+                           FishersR = r_tform, 
+                           FishersR_Significance_Tests = cor)
+      return(correlations)
+    }
+        
 # pool regression estimates from implist
     pool.regression <- function(implist, formula){
 
@@ -116,7 +138,7 @@ options(scipen = 999)
         ))
       }
   
-  # labeling transformatino results
+  # labeling transformation results
       r <- r_transform(impresults)
         colnames(r) <- c("Untransformed", "Fisher's R-Z Transformation")
         rownames(r) <- c("Multiple Correlation Transformations")
