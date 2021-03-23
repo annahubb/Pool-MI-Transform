@@ -43,21 +43,28 @@ options(scipen = 999)
 #pool descriptives from implist
     pool.descriptives <- function(implist,variables){
 
-      descriptives <- with(implist, 
-                           expr= describe(list.cbind((mget(variables))))
-                          )
+      descriptives <- with(implist.mids, 
+                           expr= describe(list.cbind((mget(variables))),type = 1)
+      )
+      
+      descriptives.analyses <- descriptives$analyses # (for sd and var pooling later)
+      
+      # converting to non-excess kurtosis
+      for (i in 1:length(descriptives.analyses)) {
+        descriptives.analyses[[i]]$kurtosis <-  descriptives.analyses[[i]]$kurtosis+3
+      }
+      
       # pooling untranformed -- mean, median, sd, var, skew, kurt
       pooled.desc <- withPool_MI(descriptives)
       pooled.desc <- data.frame(mean = pooled.desc$mean,
                                 median = pooled.desc$median,
                                 sd = pooled.desc$sd,
-                                var = pooled.desc$sd^2,
+                                var = var_transform(descriptives.analyses)[,1],
                                 skew = pooled.desc$skew,
-                                kurtosis = pooled.desc$kurtosis)
+                                kurtosis = pooled.desc$kurtosis+3)
       
       rownames(pooled.desc) <- rownames(withPool_MI(descriptives))
-      
-      descriptives.analyses <- descriptives$analyses # (for sd and var pooling later)
+
       
       #sd descriptives transformations
       transformations <- sd_transform(descriptives.analyses)
@@ -272,7 +279,7 @@ options(scipen = 999)
     var_transform <- function(data){
   
   varfunc <- function(data){
-    # data <- impresults[[1]]
+    # data <- data[[1]]
     var <- (data$sd)^2
     logv <- log(var)
     sqrtv <- sqrt(var)
